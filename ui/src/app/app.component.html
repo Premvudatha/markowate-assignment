@@ -1,0 +1,17 @@
+
+  
+
+  <nav mat-tab-nav-bar  mat-align-tabs="start" class="tabs">
+    <a mat-tab-link  routerLink="/cruds" routerLinkActive="active" label="Home">CRUD</a>
+    <a mat-tab-link routerLink="/registers" routerLinkActive="active"  label="registers">Register</a>
+    <a mat-tab-link routerLink="/crudangulars" routerLinkActive="active"  label="crudangulars">CRUD(Angular</a>
+
+  </nav>
+  <br>
+<h2><strong>Welcome {{name}}</strong></h2>
+<h3><mat-icon>send</mat-icon>Please click CRUD Tab for CRUD Operations</h3>
+<h3><mat-icon>send</mat-icon>Please click Register Tab for Signup & to know the Authentication Flow</h3>
+<h3><mat-icon>send</mat-icon>Please click CRUD(Angular) FOR CRUD Operations in Angular (Tables)</h3>
+
+<router-outlet></router-outlet>
+  

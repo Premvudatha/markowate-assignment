@@ -1,0 +1,27 @@
+ .tabs{    
+    display: inline-block;
+    background-color: white;
+    border-radius: 4px;
+    margin-top: 1em;
+    margin-left:150px;
+}
+/* .active-link {
+    color: #F20B22;
+} */
+nav a{
+    color:#910000;
+    background-color:rgba(71, 67, 67, 0.63);
+}
+
+nav a:hover{
+    color:blue
+}
+h2{
+    font-style: normal;
+    font-family: 'Times New Roman', Times, serif;
+    margin-left:1em;
+}
+h3{
+    margin-left:1em;
+    margin-right:1em;
+}

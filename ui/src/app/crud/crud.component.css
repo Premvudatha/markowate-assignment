@@ -1,0 +1,23 @@
+.form-group{
+    margin-top:15px;
+    margin-left:10px;
+}
+.btn-primary{
+    background-color: blue;
+    margin-left:1em;
+    margin-bottom:1em;
+}
+.btn-secondary{
+    background-color:brown;
+    margin-left:1em;
+
+}
+.btn-trinary{
+    background-color:rgba(71, 67, 67, 0.63);
+    margin-left:1em;
+
+}
+
+.smalltext{
+    color:red;
+}

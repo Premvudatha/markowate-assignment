@@ -1,0 +1,25 @@
+table {
+    width: 100%;
+  }
+  .form{
+    margin-right:10em;
+  }
+  .firstfield{
+    margin-top:1em;
+    margin-right:3em;
+  }
+  .smalltext{
+    color:red
+  }
+  .btn{
+    margin-left:3em;
+  }
+  .link{
+    font-style: underline;
+  }
+   btn-primary{
+    color:blue
+  }
+  btn-success{
+    color:green
+  }

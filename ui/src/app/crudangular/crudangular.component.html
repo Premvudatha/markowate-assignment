@@ -1,0 +1,142 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" >
+
+    <div class="form-group">
+  
+    <mat-form-field  class="firstfield">
+    <mat-label>Full Name</mat-label>
+     <input [class.is-invalid] ="registrationForm.controls.fullName.touched &&
+    registrationForm.controls.fullName.invalid" 
+    type="text" 
+    formControlName="fullName" 
+    class="form-control"  
+    matInput>
+    </mat-form-field>
+    <div *ngIf="registrationForm.controls.fullName.touched &&
+    registrationForm.controls.fullName.invalid">
+    <small class="smalltext" *ngIf="registrationForm.controls.fullName.errors?.['required']">Full Name is required</small>
+    <small class="smalltext" *ngIf="registrationForm.controls.fullName.errors?.['minlength']">Minimum Length is atleast 3 characters</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="form" >
+        <mat-label class="mobile">Mobile Number</mat-label>
+        <input [class.is-invalid] ="registrationForm.controls.mobile.touched &&
+        registrationForm.controls.mobile.invalid" 
+        type="text" formControlName="mobile" class="form-control" matInput>
+            <mat-icon matSuffix>phone</mat-icon>
+      </mat-form-field>
+      <div *ngIf="registrationForm.controls.mobile.touched">
+      <small class="smalltext" *ngIf="registrationForm.controls.mobile.errors?.['required']">Mobile Number is required</small>
+      </div>
+      <div *ngIf="registrationForm.controls.mobile.invalid">
+        <small class="smalltext" *ngIf="registrationForm.controls.mobile.errors?.['minlength']||registrationForm.controls.mobile.errors?.['maxlength']">Enter 10 Digits</small>
+        <small class="smalltext"   *ngIf="registrationForm.controls.mobile.errors?.['pattern']">Enter Only Digits </small>
+
+      </div>
+
+    </div>
+    <div class="form-group">
+
+        <mat-form-field >
+        <mat-label>Email Id</mat-label>
+        <input [class.is-invalid] ="registrationForm.controls.emailId.touched &&
+        registrationForm.controls.emailId.invalid" 
+        type="text" formControlName="emailId" class="form-control" matInput>
+      </mat-form-field>
+      <div *ngIf="registrationForm.controls.emailId.touched">
+      <small class="smalltext" *ngIf="registrationForm.controls.emailId.errors?.['required']">Email Id is required</small>
+      </div>
+      <div *ngIf="registrationForm.controls.emailId.invalid">
+        <small class="smalltext" *ngIf="registrationForm.controls.emailId.errors?.['email']">Enter Valid Email</small>
+
+      </div>
+  
+    </div>
+
+      <div class="form-group">
+        <mat-label>Job Type</mat-label>
+        <mat-button-toggle-group [class.is-invalid] ="registrationForm.controls.jobType.touched &&
+        registrationForm.controls.jobType.invalid" formControlName="jobType" class="form-control" matInput>
+            <mat-button-toggle value="fT" >FT</mat-button-toggle>
+            <mat-button-toggle value="PT">PT</mat-button-toggle>
+            <mat-button-toggle value="consultant">Consultant</mat-button-toggle>
+          </mat-button-toggle-group>
+          <div *ngIf="registrationForm.controls.jobType.touched && registrationForm.controls.jobType.touched">
+            <small class="smalltext" *ngIf="registrationForm.controls.jobType.errors?.['required']">Job Type is required</small>
+            </div>
+            </div>
+
+          <div class="form-group">
+            <mat-label>DOB</mat-label>
+
+        <mat-form-field >
+            <mat-label>Choose a date</mat-label>
+            <input [class.is-invalid] ="registrationForm.controls.dob.touched &&
+            registrationForm.controls.dob.invalid" formControlName="dob" class="form-control"   matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div *ngIf="registrationForm.controls.dob.touched &&
+          registrationForm.controls.dob.invalid">
+          <small class="smalltext" *ngIf="registrationForm.controls.dob.errors?.['required']"> DOB is required</small>
+          </div>
+      </div>
+      
+      <div class="form-group">
+        <mat-form-field >
+            <mat-label>Pref.Location</mat-label>
+            <mat-select [class.is-invalid] ="registrationForm.controls.prefLocation.touched &&
+            registrationForm.controls.prefLocation.invalid"  formControlName="prefLocation" class="form-control" matInput>
+              <mat-option 
+               *ngFor="let location of locations" [value]="location.value">
+                {{location.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div *ngIf="registrationForm.controls.prefLocation.touched &&
+          registrationForm.controls.prefLocation.invalid">
+          <small class="smalltext" *ngIf="registrationForm.controls.prefLocation.errors?.['required']"> Pref.Location is required</small>
+          </div>
+      </div>
+      <div *ngIf="!isedit">
+        <button   mat-raised-button [disabled]="!registrationForm.valid"  class="btn btn-primary" type="submit" (click)="onSubmit()">Submit</button>
+
+      </div>
+      <div *ngIf="isedit">
+        <button  class="btn btn-success"  mat-raised-button [disabled]="!registrationForm.valid"  class="btn btn-primary" type="save" (click)="onSave()">Save</button>
+
+      </div>
+
+    </form>
+<br><br>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+        <td>S.No</td>
+        <td>Full Name</td>
+      <td>Email</td>
+
+      <td>Mobile</td>
+      <td> DOB</td>
+      <td> Job Type</td>
+      <td> Action</td>
+
+    </tr>
+
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items;let i=index">
+        <th scope="row">{{i}}</th>
+       <td><span>{{item.fullName}}</span></td>
+      <td><span>{{item.emailId}}</span></td>
+      <td><span>{{item.mobile}}</span></td>
+      <td><span>{{item.dob|date}}</span></td>
+      <td><span>{{item.jobType}}</span></td>
+      <td > <a ><mat-icon style="color:blue"(click)="onedit(i)" >edit</mat-icon></a> |<a> <mat-icon style="color:red" (click)="delete(item,i)">delete</mat-icon></a></td>
+
+    </tr>
+  </tbody>
+
+</table>
